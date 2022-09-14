@@ -2,13 +2,16 @@ console.log('connected to HTML')
 
 // get computer choice
 function getComputerChoice() {
+  // random number generated between 0 to 3
   const computerChoice = Math.floor(Math.random() * 3);
+  
+  // check number returned and return value corresponding to number
   switch(computerChoice) {
     case 0:
-      return 'Computer Chooses: Rock'
+      return 'rock'
     case 1:
-      return 'Computer Chooses: Paper'
+      return 'paper'
     case 2:
-      return 'Computer Chooses: Scissors'
+      return 'scissors'
   }
 }
