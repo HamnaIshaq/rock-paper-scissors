@@ -46,11 +46,34 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-// get player choice (hard coded value for testing)
-const playerSelection = 'scissors';
+// game function
+function game() {
+  // play a game of 5 rounds
+  for (let i = 0; i < 5; i++) {
+    // get computer choice
+    const computerSelection = getComputerChoice();
 
-// get computer choice
-const computerSelection = getComputerChoice();
+    // get player choice
+    const playerSelection = window.prompt('Enter your choice from the following: (1) Rock (2) Paper (3) Scissors');
+    
+    // cancel button in prompt is pressed
+    if(playerSelection === null) {
+      return;
+    }
+    // if an invalid choice is entered, user can enter their choice again
+    else if(playerSelection.toLowerCase() !== 'rock' && playerSelection.toLowerCase() !== 'paper' && playerSelection.toLowerCase() !== 'scissors') {
+      console.log('you entered an invalid move! Please enter again');
+      // for 2nd round and above, subtract from the game to get 5 valid games
+      if(i !== 0) {
+        i--;
+      }
+    }
+    // print result of valid round on console
+    else {
+      console.log(playRound(playerSelection, computerSelection))
+    }
+  }
+}
 
-// play rock, paper, scissors round
-console.log(playRound(playerSelection, computerSelection))
+// start rock, paper, scissors game
+game();
