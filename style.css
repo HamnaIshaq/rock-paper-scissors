@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  background-color: #fcfcfc;
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.game-title {
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.score {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.row {
+  display: flex;
+}
+
+.row-direction {
+  flex-direction: column;
+}
+
+.row-justify-space-between {
+  justify-content: space-between;
+}
+
+.row-justify-center {
+  justify-content: center;
+}
+
+.row-align-center {
+  align-items: center;
+}
+
+.btn{
+  background: transparent;
+  width: 80px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn + .btn {
+  margin-left: 1.5em;
+}
+
+img {
+  width: 100%;
+}
+
+.player-selection-container {
+  margin: 2em 0 3em 0;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.rules-container {
+  position: fixed;
+  bottom: 45px;
+  right: 40px;
+}
+
+.btn-rules {
+  text-transform: uppercase;
+  font-size: 20px;
+  background-color: #F1BAF5;
+  border: 2px solid black;
+  border-radius: 7px;
+  padding: .5em 2em;
+  width: auto;
+}
