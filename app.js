@@ -1,12 +1,17 @@
-console.log('connected to HTML')
+const playerChoice = document.querySelectorAll('.btn-player-choice');
+const winScore = document.querySelector('.win-score');
+const loseScore = document.querySelector('.lose-score');
+
+let wins;
+let loses;
 
 // get computer choice
 function getComputerChoice() {
   // random number generated between 0 to 3
   const computerChoice = Math.floor(Math.random() * 3);
-  
+
   // check number returned and return value corresponding to number
-  switch(computerChoice) {
+  switch (computerChoice) {
     case 0:
       return 'rock'
     case 1:
@@ -18,62 +23,86 @@ function getComputerChoice() {
 
 // play round of rock, paper, scissors between player and computer
 function playRound(playerSelection, computerSelection) {
-  // 
+
   const playerChoice = playerSelection.toLowerCase();
-  
+
   const computerChoice = computerSelection.toLowerCase();
-  
-  if(playerChoice === computerChoice) {
-    return 'Both choose '+ playerChoice + '. It is a draw'
+
+  let winningScore = parseInt(winScore.textContent);
+  let losingScore = parseInt(loseScore.textContent);
+
+  if (playerChoice === computerChoice) {
+    return 'Both choose ' + playerChoice + '. It is a draw'
   }
-  else if(playerChoice === 'rock' && computerChoice === 'scissors') {
-    return 'You Win! Rock beats Scissors'  
+  else if (playerChoice === 'rock' && computerChoice === 'scissors') {
+    winningScore++;
+    winScore.textContent = winningScore;
+    return 'You Win! Rock beats Scissors'
   }
-  else if(playerChoice === 'rock' && computerChoice === 'paper') {
-    return 'You Lose! Paper beats Rock'  
+  else if (playerChoice === 'rock' && computerChoice === 'paper') {
+    losingScore++;
+    loseScore.textContent = losingScore;
+    return 'You Lose! Paper beats Rock'
   }
-  else if(playerChoice === 'paper' && computerChoice === 'scissors') {
-    return 'You Lose! Scissors beat Paper'  
+  else if (playerChoice === 'paper' && computerChoice === 'scissors') {
+    losingScore++;
+    loseScore.textContent = losingScore;
+    return 'You Lose! Scissors beat Paper'
   }
-  else if(playerChoice === 'paper' && computerChoice === 'rock') {
-    return 'You Win! Paper beats Rock'  
+  else if (playerChoice === 'paper' && computerChoice === 'rock') {
+    winningScore++;
+    winScore.textContent = winningScore;
+    return 'You Win! Paper beats Rock'
   }
-  else if(playerChoice === 'scissors' && computerChoice === 'rock') {
-    return 'You Lose! Rock beats Scissors'  
+  else if (playerChoice === 'scissors' && computerChoice === 'rock') {
+    losingScore++;
+    loseScore.textContent = losingScore;
+    return 'You Lose! Rock beats Scissors'
   }
-  else if(playerChoice === 'scissors' && computerChoice === 'paper') {
-    return 'You Win! Scissors beat Paper'  
+  else if (playerChoice === 'scissors' && computerChoice === 'paper') {
+    winningScore++;
+    winScore.textContent = winningScore;
+    return 'You Win! Scissors beat Paper'
   }
 }
 
-// game function
-function game() {
-  // play a game of 5 rounds
-  for (let i = 0; i < 5; i++) {
-    // get computer choice
-    const computerSelection = getComputerChoice();
+let totalRounds = 0;
 
-    // get player choice
-    const playerSelection = window.prompt('Enter your choice from the following: (1) Rock (2) Paper (3) Scissors');
-    
-    // cancel button in prompt is pressed
-    if(playerSelection === null) {
-      return;
-    }
-    // if an invalid choice is entered, user can enter their choice again
-    else if(playerSelection.toLowerCase() !== 'rock' && playerSelection.toLowerCase() !== 'paper' && playerSelection.toLowerCase() !== 'scissors') {
-      console.log('you entered an invalid move! Please enter again');
-      // for 2nd round and above, subtract from the game to get 5 valid games
-      if(i !== 0) {
-        i--;
+// get clicked choice from rock, paper, scissors and show match result
+playerChoice.forEach(choice => {
+  choice.addEventListener('click', (e) => {
+    const clickedChoice = e.currentTarget.getAttribute('data-choice');
+
+    const result = playRound(clickedChoice, getComputerChoice());
+
+    const matchResult = document.querySelector('.match-result');
+
+    matchResult.textContent = result;
+
+    totalRounds++;
+
+    // show the winner of 5 rounds
+    if(totalRounds === 5) {
+      wins = parseInt(winScore.textContent);
+      loses = parseInt(loseScore.textContent);
+
+      if(wins > loses) {
+        matchResult.textContent = 'You won more rounds than computer!';
       }
-    }
-    // print result of valid round on console
-    else {
-      console.log(playRound(playerSelection, computerSelection))
-    }
-  }
-}
 
-// start rock, paper, scissors game
-game();
+      if(loses > wins) {
+        matchResult.textContent = 'You lost more rounds from computer!';
+      }
+
+      else if(wins === loses) {
+        matchResult.textContent = 'You and computer drew all matches!';
+      }
+
+      winScore.textContent = 0;
+      loseScore.textContent = 0;
+
+      totalRounds = 0;
+    }
+
+  })
+})
