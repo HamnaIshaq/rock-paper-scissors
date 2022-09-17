@@ -6,9 +6,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
 
+  <!-- Google Fonts - Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
   <script defer src="./app.js"></script>
+
+  <style>
+    
+  </style>
 </head>
 <body>
   
+  <header>
+    <div class="container">
+      <h1 class="game-title">rock paper scissors</h1>
+      <div class="row row-justify-space-between">
+        <p class="score">win: 
+          <span class="win-score">0</span>
+        </p>
+        <p class="score">lose: 
+          <span class="lose-score">0</span>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main>    
+    <div class="container">
+      
+      <div class="game-container">
+        <div class="player-selection-container row row-justify-space-between row-align-center">
+          <div class="row row-direction row-align-center">
+            <button type="button" class="btn btn-player-choice" data-choice="rock">
+              <img src="./images/rock.png" alt="rock">
+            </button>
+            <span>Rock</span>
+          </div>
+          <div class="row row-direction row-align-center">
+            <button type="button" class="btn btn-player-choice" data-choice="paper">
+              <img src="./images/paper.png" alt="paper">
+            </button>
+            <span>Paper</span>
+          </div>
+          <div class="row row-direction row-align-center">
+            <button type="button" class="btn btn-player-choice" data-choice="scissors">
+              <img src="./images/scissors.png" alt="scissors">
+            </button>
+            <span>Scissors</span>
+          </div>
+        </div>
+
+        <p class="text-center">Choose your move!</p>
+        <!-- winner after 5 matches -->
+        <p class="text-center match-result"></p>
+
+      </div>
+
+    </div>
+  </main>
+
 </body>
 </html>
